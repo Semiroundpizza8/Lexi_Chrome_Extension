@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "material-ui": "^0.20.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-tap-event-plugin": "^3.0.2",
     "unsplash-js": "^4.8.0"
   },
   "devDependencies": {
