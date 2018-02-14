@@ -10,8 +10,8 @@ export default class ImageView extends React.Component {
   render() {
     return (
       <div>
-        <h2>{this.state.word}</h2>
-        <p>{wordData[0].text}</p>
+        <h2>Hello</h2>
+        <p>Word Text Here</p>
       </div>
     )
   }
