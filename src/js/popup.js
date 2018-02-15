@@ -1,5 +1,5 @@
 import "../css/popup.css";
-import Greeting from "./popup/greeting_component.jsx";
+import Greeting from "./popup/main.jsx";
 import React from "react";
 import { render } from "react-dom";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

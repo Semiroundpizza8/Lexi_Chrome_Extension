@@ -1,12 +1,18 @@
 import React from 'react';
 import Unsplash, { toJson } from 'unsplash-js';
-import secrets from './secrets.js';
+import secrets from '../secrets.js';
+import styled from 'styled-components';
 
 const unsplash = new Unsplash({
   applicationId: secrets.UNSPLASH_APP_ID,
   secret: secrets.UNSPLASH_SECRET,
   callbackUrl: secrets.UNSPLASH_CALLBACK
 });
+
+const ImageStyled = styled.div`
+  grid-column: 1;
+  grid-row: 1 / 5;
+`;
 
 export default class ImageView extends React.Component {
   constructor(props) {
@@ -18,7 +24,7 @@ export default class ImageView extends React.Component {
 
   componentDidMount() {
     // Request for Photographs
-    unsplash.search.photos('dogs', 1, 4)
+    unsplash.search.photos(this.props.word, 1, 4)
       .then(toJson)
       .then(json => {
         this.setState({ images: json.results });
@@ -26,10 +32,11 @@ export default class ImageView extends React.Component {
   }
 
   render() {
+    if (!this.state.images.length) return (<p>Loading Images</p>);
     return (
-      <div>
-        {this.state.images.map(image => <img key={image.id} src={image.urls.small} alt="Smiley face" height="125" width="125" />)}
-      </div>
+      <ImageStyled>
+        {this.state.images.map(image => <img key={image.id} src={image.urls.small} height="125" width="125" />)}
+      </ImageStyled>
     );
   }
 }
