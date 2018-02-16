@@ -4,10 +4,10 @@ import secrets from '../secrets.js';
 import axios from 'axios';
 import styled from 'styled-components';
 
+
 const WordStyle = styled.div`
-  background-color: red;
-  grid-column: 2 / 4;
-  grid-row: 1 / 4;
+  padding-left: 4px;
+  grid-area: b;
 `;
 
 export default class ImageView extends React.Component {
@@ -21,13 +21,13 @@ export default class ImageView extends React.Component {
   componentDidMount() {
     // Request for Definition
     let wordnikStart = 'http://api.wordnik.com:80/v4/word.json';
-    let definitionEnd = `definitions?limit=1&includeRelated=false&sourceDictionaries=all&useCanonical=false&includeTags=false&api_key=${secrets.WORDNIK_API_KEY}`;
+    let definitionEnd = `definitions?limit=200&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=${secrets.WORDNIK_API_KEY}`;
     let word = this.props.word;
 
     axios.get(`${wordnikStart}/${word}/${definitionEnd}`)
       .then(toJson)
       .then(item => {
-        console.log('makingRequest for def');
+        console.log('makingRequest for def', item.data);
         this.setState({ definition: item.data });
       });
   }
@@ -36,7 +36,7 @@ export default class ImageView extends React.Component {
     if (!this.state.definition.length) return (<p>Loading Words</p>);
     return (
       <WordStyle>
-        <h2>{this.props.word}</h2>
+        {this.state.definition.map(def => <p key={def.text}>{def.text}</p>)}
         <p>{this.state.definition[0].text}</p>
       </WordStyle>
     );

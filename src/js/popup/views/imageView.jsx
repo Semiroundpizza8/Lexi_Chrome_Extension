@@ -10,8 +10,7 @@ const unsplash = new Unsplash({
 });
 
 const ImageStyled = styled.div`
-  grid-column: 1;
-  grid-row: 1 / 5;
+  grid-area: a;
 `;
 
 export default class ImageView extends React.Component {
@@ -24,7 +23,7 @@ export default class ImageView extends React.Component {
 
   componentDidMount() {
     // Request for Photographs
-    unsplash.search.photos(this.props.word, 1, 4)
+    unsplash.search.photos(this.props.word, 1, 3)
       .then(toJson)
       .then(json => {
         this.setState({ images: json.results });
@@ -35,7 +34,7 @@ export default class ImageView extends React.Component {
     if (!this.state.images.length) return (<p>Loading Images</p>);
     return (
       <ImageStyled>
-        {this.state.images.map(image => <img key={image.id} src={image.urls.small} height="125" width="125" />)}
+        {this.state.images.map(image => <img key={image.id} src={image.urls.small} height="125" width="143.75" />)}
       </ImageStyled>
     );
   }

@@ -5,6 +5,7 @@ import axios from 'axios';
 import ImageView from './views/imageView';
 import WordView from './views/wordView';
 import styled from 'styled-components';
+import AppBar from 'material-ui/AppBar';
 
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -12,10 +13,18 @@ import styled from 'styled-components';
 // // http://stackoverflow.com/a/34015469/988941
 // injectTapEventPlugin();
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+display: grid;
+grid-template-columns: repeat(8, 1fr);
+grid-gap: 10px;
+grid-auto-rows: 100px;
+grid-template-areas: 
+  "b b b b b a a a"
+  "b b b b b a a a"
+  "b b b b b a a a"
+  "c c c c c a a a";
+align-items: start;
+width: 400px;
+height: 400px;
 `;
 
 
@@ -41,18 +50,23 @@ export default class Main extends React.Component {
   }
 
   render() {
+    let backgroundPage = chrome.extension.backgroundPage();
+    let word = backgroundPage.word;
+    console.log(word);
     let audioData = this.state.audioData;
     console.log(this.state.word);
     // if (!audioData.length) return (<div />);
     return (
       <div>
-        <input onChange={(event) => this.setState({ word: event.target.value })} />
+        <AppBar
+          title="Dogs"
+        />
         <Wrapper>
           <ImageView word={this.state.word} />
           <WordView word={this.state.word} />
-          {/* <audio controls>
+          <audio style={{ gridArea: 'c' }} controls>
             <source src={this.state.audioData[0].fileUrl} />
-          </audio> */}
+          </audio>
         </Wrapper>
       </div>
     );
