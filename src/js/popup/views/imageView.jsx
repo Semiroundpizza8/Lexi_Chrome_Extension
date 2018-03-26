@@ -32,9 +32,12 @@ export default class ImageView extends React.Component {
 
   render() {
     if (!this.state.images.length) return (<p>Loading Images</p>);
+    console.log(this.state.images)
     return (
       <ImageStyled>
-        {this.state.images.map(image => <img key={image.id} src={image.urls.small} height="125" width="143.75" />)}
+      {this.state.images.map(image => 
+        <img key={image.id} src={image.urls.small} height="125" width="143.75" />
+        )}
       </ImageStyled>
     );
   }

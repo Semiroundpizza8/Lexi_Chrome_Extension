@@ -13,7 +13,6 @@
     "tabs"
   ],
   "background": {
-    "page": "background.html",
     "scripts": ["background.bundle.js"]
   },
   "browser_action": {

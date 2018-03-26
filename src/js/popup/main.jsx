@@ -1,5 +1,6 @@
 import React from 'react';
 import { toJson } from 'unsplash-js';
+import { Menu, Icon } from 'antd';
 import secrets from './secrets.js';
 import axios from 'axios';
 import ImageView from './views/imageView';
@@ -50,9 +51,6 @@ export default class Main extends React.Component {
   }
 
   render() {
-    let backgroundPage = chrome.extension.backgroundPage();
-    let word = backgroundPage.word;
-    console.log(word);
     let audioData = this.state.audioData;
     console.log(this.state.word);
     // if (!audioData.length) return (<div />);
@@ -64,9 +62,11 @@ export default class Main extends React.Component {
         <Wrapper>
           <ImageView word={this.state.word} />
           <WordView word={this.state.word} />
-          <audio style={{ gridArea: 'c' }} controls>
-            <source src={this.state.audioData[0].fileUrl} />
-          </audio>
+          {this.state.audioData[0] && (
+            <audio style={{ gridArea: 'c' }} controls>
+              <source src={this.state.audioData[0].fileUrl} />
+            </audio>
+          )}
         </Wrapper>
       </div>
     );
