@@ -2,6 +2,9 @@
   "presets": [
     "react"
   ],
+  "plugins": [
+    ["import", {"libraryName": "antd", "style": "css"} ]
+  ],
   "env": {
     "development": {
       "presets":["react-hmre"]

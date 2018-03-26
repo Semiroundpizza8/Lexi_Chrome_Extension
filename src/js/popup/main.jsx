@@ -1,10 +1,10 @@
 import React from 'react';
 import { toJson } from 'unsplash-js';
-import { Menu, Icon } from 'antd';
 import secrets from './secrets.js';
 import axios from 'axios';
-import ImageView from './views/imageView';
-import WordView from './views/wordView';
+// import ImageView from './views/imageView';
+// import WordView from './views/wordView';
+import { ImageView, WordView, NavBar } from './views/index';
 import styled from 'styled-components';
 import AppBar from 'material-ui/AppBar';
 
@@ -52,13 +52,13 @@ export default class Main extends React.Component {
 
   render() {
     let audioData = this.state.audioData;
-    console.log(this.state.word);
     // if (!audioData.length) return (<div />);
     return (
       <div>
-        <AppBar
+        {/* <AppBar
           title="Dogs"
-        />
+        /> */}
+        <NavBar />
         <Wrapper>
           <ImageView word={this.state.word} />
           <WordView word={this.state.word} />

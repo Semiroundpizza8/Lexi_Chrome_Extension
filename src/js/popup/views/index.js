@@ -1,9 +1,3 @@
-import ImageView from './imageView.jsx';
-import WordView from './wordView.jsx';
-
-let views = {
-  ImageView,
-  WordView
-};
-
-export default views;
+export { default as ImageView } from './imageView.jsx';
+export { default as WordView } from './wordView.jsx';
+export { default as NavBar } from './navBar.jsx';

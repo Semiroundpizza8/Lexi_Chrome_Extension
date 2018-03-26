@@ -10,7 +10,7 @@ const WordStyle = styled.div`
   grid-area: b;
 `;
 
-export default class ImageView extends React.Component {
+export default class WordView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
